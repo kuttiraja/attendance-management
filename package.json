@@ -4,7 +4,9 @@
   "description": "A small system to maintain class, students, staff, time.",
   "main": "app/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run test",
+    "start": "node app/index.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +22,8 @@
   "dependencies": {
     "express": "^4.16.4",
     "mongoose": "^5.3.15",
-    "q": "^1.5.1"
+    "morgan": "^1.9.1",
+    "q": "^1.5.1",
+    "winston": "^3.1.0"
   }
 }
