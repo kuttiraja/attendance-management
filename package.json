@@ -2,7 +2,7 @@
   "name": "attendance-management",
   "version": "1.0.0",
   "description": "A small system to maintain class, students, staff, time.",
-  "main": "index.js",
+  "main": "app/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/kuttiraja/attendance-management/issues"
   },
-  "homepage": "https://github.com/kuttiraja/attendance-management#readme"
+  "homepage": "https://github.com/kuttiraja/attendance-management#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
