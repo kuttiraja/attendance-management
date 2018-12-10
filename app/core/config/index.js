@@ -1,6 +1,7 @@
 require('dotenv');
 
 module.exports = {
+    APP_NAME: process.env.APP_NAME || 'attendancemgmt',
     APP_HOST: process.env.APP_HOST,
     APP_PORT: process.env.APP_PORT || 8080,
     DB_HOST: process.env.DB_HOST,
