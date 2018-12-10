@@ -1,24 +1,23 @@
-const server = require('./server').app
-const logger = require('./server').logger
+const { server, logger } = require('./server')
+const config = require('./core/config')
 const db = require('./db')
 const mongoose = db.mongoose
 
 db.connect() 
   .then(() => {
-    //   console.log("DB Connected")
-    logger.info("DB Connection: Success")
-    server.listen(3000, () => logger.info('App Server started at 3000'))
+    logger.info("DB connection: Success")
+    server.listen(config.APP_PORT, () => logger.info(`App server started at {config.APP_PORT}`))
   })
-  .catch((error) => logger.error("Error Occured during DB Connection"))
+  .catch((error) => logger.error("Error occured during DB connection"))
 
 process.on('SIGTERM', () => {
     mongoose.disconnect()
-    logger.info("SIGTERM:DB Disconnected, Process Exiting...")
+    logger.info("SIGTERM:DB disconnected, process exiting...")
     process.exit()
 })
 
 process.on('SIGINT', () => {
     mongoose.disconnect()
-    logger.info("SIGINT:DB Disconnected, Process Exiting...")
+    logger.info("SIGINT:DB disconnected, process exiting...")
     process.exit()
 })
