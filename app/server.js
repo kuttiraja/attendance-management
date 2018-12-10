@@ -10,14 +10,16 @@ const logger = require('./core/logger').logger
 
 //Application Routes imports
 const healthRouter = require('./routes/health')
+const student = require('./routes/student')
 
-logger.info(`Logging enabled ${config.LOG_TO_FIE_OR_CONSOLE}`)
-app.use(morgan('combined', {stream: logger.stream}))
+logger.info(`Logging enabled ${config.LOG_TO_FILE_OR_CONSOLE}`)
+app.use(morgan('combined', { stream: logger.stream }))
 
 //Application Routes
-app.use(healthRouter)
+app.use('/heartbeat', healthRouter)
+app.use('/student', student)
 
-module.exports = { 
-    server: app ,  
-    logger: logger 
+module.exports = {
+    server: app,
+    logger: logger
 }
