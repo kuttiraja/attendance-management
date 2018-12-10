@@ -1,4 +1,4 @@
-require('dotenv');
+require('dotenv').config();
 
 module.exports = {
     APP_HOST: process.env.APP_HOST,
