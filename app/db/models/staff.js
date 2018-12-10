@@ -7,7 +7,7 @@ const staffSchema = new mongoose.Schema({
         lastName: String
     },
     dob: Date,
-    email: { type: String, unique: true },
+    email: { type: String },
     gender: String,
     address: { 
         addressline1: String, 
