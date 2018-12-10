@@ -8,5 +8,5 @@ module.exports = {
     DB_SCHEMA: process.env.DB_SCHEMA,
     DB_USER: process.env.DB_USER,
     DB_PASS: process.env.DB_PASS,
-    LOG_TO_FIE_OR_CONSOLE: process.env.LOG_TO_FIE_OR_CONSOLE || 'CONSOLE',
+    LOG_TO_FILE_OR_CONSOLE: process.env.LOG_TO_FILE_OR_CONSOLE || 'CONSOLE',
 }

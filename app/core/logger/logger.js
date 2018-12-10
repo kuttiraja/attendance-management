@@ -34,13 +34,13 @@ var options = {
 
 // your centralized logger object
 let transport = null
-if (config.LOG_TO_FIE_OR_CONSOLE === 'FILE')
+if (config.LOG_TO_FILE_OR_CONSOLE === 'FILE')
   transport = [
-    new(winston.transports.File)(options.errorFile),
-    new(winston.transports.File)(options.file)
+    new (winston.transports.File)(options.errorFile),
+    new (winston.transports.File)(options.file)
   ]
 else
-  transport = [new(winston.transports.Console)(options.console)]
+  transport = [new (winston.transports.Console)(options.console)]
 
 let logger = winston.createLogger({
   levels: winston.config.npm.levels,
