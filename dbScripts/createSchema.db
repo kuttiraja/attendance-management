@@ -1,17 +1,16 @@
-use AttendanceMgmtDB
+use attendancemgmt;
 
-db.createCollection('Class');
-Db.createCollection('staff');
-Db.createCollection('student');
-Db.createCollection('attendance');
-Db.createCollection('batch');
-Db.createCollection('subject');
-Db.createCollection('period');
-
-db.createCollection("Counters");
+db.createCollection('class');
+db.createCollection('staff');
+db.createCollection('student');
+db.createCollection('attendance');
+db.createCollection('batch');
+db.createCollection('subject');
+db.createCollection('period');
+db.createCollection("counters");
 
 function getNextSequenceValue(sequenceName){
-   var sequenceDocument = db.Counters.findAndModify({
+   var sequenceDocument = db.counters.findAndModify({
       query:{_id: sequenceName },
       update: {$inc:{sequence_value:1}},
       new:true
@@ -20,10 +19,10 @@ function getNextSequenceValue(sequenceName){
 };
 
 //Creating counter variables for each collections.
-db.Counters.insert({_id:"classId", sequence_value:0});
-db.Counters.insert({_id:"studentId", sequence_value:0});
-db.Counters.insert({_id:"staffId", sequence_value:0});
-db.Counters.insert({_id:"attendanceId", sequence_value:0});
-db.Counters.insert({_id:"batchId", sequence_value:0});
-db.Counters.insert({_id:"subjectId", sequence_value:0});
-db.Counters.insert({_id:"periodId", sequence_value:0});
+db.counters.insert({_id:"classId", sequence_value:0});
+db.counters.insert({_id:"studentId", sequence_value:0});
+db.counters.insert({_id:"staffId", sequence_value:0});
+db.counters.insert({_id:"attendanceId", sequence_value:0});
+db.counters.insert({_id:"batchId", sequence_value:0});
+db.counters.insert({_id:"subjectId", sequence_value:0});
+db.counters.insert({_id:"periodId", sequence_value:0});
