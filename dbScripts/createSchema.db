@@ -1,0 +1,29 @@
+use AttendanceMgmtDB
+
+db.createCollection('Class');
+Db.createCollection('staff');
+Db.createCollection('student');
+Db.createCollection('attendance');
+Db.createCollection('batch');
+Db.createCollection('subject');
+Db.createCollection('period');
+
+db.createCollection("Counters");
+
+function getNextSequenceValue(sequenceName){
+   var sequenceDocument = db.Counters.findAndModify({
+      query:{_id: sequenceName },
+      update: {$inc:{sequence_value:1}},
+      new:true
+   });
+   return sequenceDocument.sequence_value;
+};
+
+//Creating counter variables for each collections.
+db.Counters.insert({_id:"classId", sequence_value:0});
+db.Counters.insert({_id:"studentId", sequence_value:0});
+db.Counters.insert({_id:"staffId", sequence_value:0});
+db.Counters.insert({_id:"attendanceId", sequence_value:0});
+db.Counters.insert({_id:"batchId", sequence_value:0});
+db.Counters.insert({_id:"subjectId", sequence_value:0});
+db.Counters.insert({_id:"periodId", sequence_value:0});
