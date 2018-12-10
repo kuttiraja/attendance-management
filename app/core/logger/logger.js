@@ -1,5 +1,6 @@
 // var appRoot = require('app-root-path');
-var winston = require('winston')
+const winston = require('winston')
+const config = require('../config')
 
 var options = {
   file: {
@@ -32,21 +33,26 @@ var options = {
 
 
 // your centralized logger object
+let transport = null
+if (config.LOG_TO_FIE_OR_CONSOLE === 'FILE')
+  transport = [
+    new(winston.transports.File)(options.errorFile),
+    new(winston.transports.File)(options.file)
+  ]
+else
+  transport = [new(winston.transports.Console)(options.console)]
+
 let logger = winston.createLogger({
-    levels: winston.config.npm.levels,
-    format : winston.format.json(),
-  transports: [
-    new (winston.transports.Console)(options.console),
-    new (winston.transports.File)(options.errorFile),
-    new (winston.transports.File)(options.file)
-  ],
+  levels: winston.config.npm.levels,
+  format: winston.format.json(),
+  transports: transport,
   exitOnError: false, // do not exit on handled exceptions
 })
 
 module.exports = logger
 
 module.exports.stream = {
-    write: function(message, encoding){
-        logger.info(message);
-    }
+  write: function (message, encoding) {
+    logger.info(message);
+  }
 }
