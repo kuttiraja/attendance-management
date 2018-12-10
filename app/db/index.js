@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const config = require('../core/config')
 mongoose.Promise = require('q').Promise
 
 const mongooseOptions = {
@@ -7,7 +8,7 @@ const mongooseOptions = {
     useNewUrlParser : true
     // useMongoClient : true
 }
-DB_URI =  "mongodb://localhost/test"
+const DB_URI =  `mongodb://${config.DB_USER}:${config.DB_PASS}@${config.DB_HOST}:${config.DB_PORT}/${config.DB_SCHEMA}`
 async function connect() {
     await mongoose.connect(DB_URI, mongooseOptions)
 }
