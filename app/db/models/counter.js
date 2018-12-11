@@ -3,7 +3,7 @@ const Types = mongoose.Schema.Types
 const counterSchema = new mongoose.Schema({
     sequenceName: Types.String,
     sequenceValue: Types.Number
-}, { collation: 'counters' })
+}, { collection: 'counters' })
 
 const counterModel = mongoose.model('counters', counterSchema)
 
