@@ -9,20 +9,11 @@ db.createCollection('subject');
 db.createCollection('period');
 db.createCollection("counters");
 
-function getNextSequenceValue(sequenceName){
-   var sequenceDocument = db.counters.findAndModify({
-      query:{_id: sequenceName },
-      update: {$inc:{sequence_value:1}},
-      new:true
-   });
-   return sequenceDocument.sequence_value;
-};
-
 //Creating counter variables for each collections.
-db.counters.insert({_id:"classId", sequence_value:0});
-db.counters.insert({_id:"studentId", sequence_value:0});
-db.counters.insert({_id:"staffId", sequence_value:0});
-db.counters.insert({_id:"attendanceId", sequence_value:0});
-db.counters.insert({_id:"batchId", sequence_value:0});
-db.counters.insert({_id:"subjectId", sequence_value:0});
-db.counters.insert({_id:"periodId", sequence_value:0});
+db.counters.insert({sequenceName:"classId", sequenceValue: NumberInt(0)});
+db.counters.insert({sequenceName:"studentId", sequenceValue:NumberInt(0)});
+db.counters.insert({sequenceName:"staffId", sequenceValue:NumberInt(0)});
+db.counters.insert({sequenceName:"attendanceId", sequenceValue:NumberInt(0)});
+db.counters.insert({sequenceName:"batchId", sequenceValue:NumberInt(0)});
+db.counters.insert({sequenceName:"subjectId", sequenceValue:NumberInt(0)});
+db.counters.insert({sequenceName:"periodId", sequenceValue_value:NumberInt(0)});

@@ -1,4 +1,4 @@
-const staff = require('./queries')
+const staff = require('./staff-queries')
 const { logger } = require('../../core/logger')
 
 async function getAllStaff(req, res, next) {
@@ -15,16 +15,30 @@ async function getAllStaff(req, res, next) {
 
 async function addStaff(req, res, next) {
     let result = [];
+    const { name, dob, email, gender, address } = req.body
+
     try {
-        result = await staff.addStaff(req.data)
-        logger.info(`staff.addStaff()- returns [${result}] staff details`)
+
+        const newStaff = {
+            name,
+            dob,
+            email,
+            gender,
+            address
+        }
+
+        result = await staff.addStaff(newStaff)
+        logger.info(`staff.addStaff()- returns [${result.staffId}] staff details`)
     } catch (err) {
         logger.error(`staff.addStaff()- error ${err}`)
     }
-    res.send("Insert Success")
+    if (result.staffId)
+        res.status(201).send('Insert Success')
+    else
+        res.status(409).send('Error in processing request')
 }
 
-module.exports = { 
+module.exports = {
     getAllStaff,
     addStaff
 }

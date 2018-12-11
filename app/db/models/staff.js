@@ -1,24 +1,35 @@
 const mongoose = require('mongoose')
+const Types = mongoose.Schema.Types
 const staffSchema = new mongoose.Schema({
-    staffId: String,
+    staffId: {
+        type: Types.Number,
+        min: 1,
+        required: true
+    },
     name: {
-        firstName: String, 
-        middleName: String, 
+        firstName: {
+            type: Types.String,
+            required: true
+        },
+        middleName: String,
         lastName: String
     },
-    dob: Date,
-    email: { type: String },
-    gender: String,
-    address: { 
-        addressline1: String, 
-        addressline2: String, 
-        city: String, 
-        zipCode: Number, 
-        State: String 
+    dob: {
+        type: Types.Date,
+        required: true
     },
-    lastUpdateTS: Date,
-    createTS: Date,
-    deletedTS: Date
+    email: { type: Types.String },
+    gender: Types.String,
+    address: {
+        addressLine1: Types.String,
+        addressLine2: Types.String,
+        city: Types.String,
+        zipCode: Types.Number,
+        State: Types.String
+    },
+    lastUpdateTS: { type: Types.Date, default: Date.now() },
+    createTS: { type: Types.Date, default: Date.now() },
+    deletedTS: Types.Date
 }, { collection: 'staff' });
 
 const staffModel = mongoose.model('staff', staffSchema)

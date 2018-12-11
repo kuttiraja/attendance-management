@@ -7,6 +7,9 @@ const path = require('path')
 
 //Global Middleware
 const bodyParser = require("body-parser")
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
 const logger = require('./core/logger').logger
 
 //Dynamic Route Imports & Adding to Express Middleware
