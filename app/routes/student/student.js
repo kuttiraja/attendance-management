@@ -1,5 +1,5 @@
 const student = require('./queries')
-const { logger } = require('../../core/logger')
+const { logger, config } = require('../../core')
 
 async function getAllStudent(req, res, next) {
     let result = [];

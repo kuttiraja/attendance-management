@@ -1,6 +1,6 @@
 const staff = require('../../db/models/staff');
 const counter = require('../../db/models/counter');
-const { logger } = require('../../core/logger');
+const { logger, config } = require('../../core');
 
 async function getAllStaffs() {
     return await staff.find({})

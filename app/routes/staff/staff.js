@@ -1,5 +1,5 @@
 const staff = require('./staff-queries')
-const { logger } = require('../../core/logger')
+const { logger, config } = require('../../core')
 
 async function getAllStaff(req, res, next) {
     let result = [];

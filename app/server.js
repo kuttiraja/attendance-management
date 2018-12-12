@@ -1,16 +1,17 @@
 const express = require('express')
-const config = require('./core/config')
+const { logger, config } = require('./core')
 const app = express()
 const morgan = require('morgan')
 const fs = require('fs')
 const path = require('path')
+const {responseTime} = require('./middleware')
 
 //Global Middleware
 const bodyParser = require("body-parser")
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+app.use(responseTime)
 
-const logger = require('./core/logger').logger
 
 //Dynamic Route Imports & Adding to Express Middleware
 const getDirectories = source => fs.readdirSync(source)
@@ -25,6 +26,5 @@ logger.info(`Logging enabled ${config.LOG_TO_FILE_OR_CONSOLE}`)
 app.use(morgan('combined', { stream: logger.stream }))
 
 module.exports = { 
-    server: app ,  
-    logger: logger 
+    server: app
 }

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const config = require('../core/config')
+const { logger, config } = require('../core')
 mongoose.Promise = require('q').Promise
 
 const mongooseOptions = {

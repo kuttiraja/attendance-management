@@ -1,5 +1,5 @@
-const { server, logger } = require('./server')
-const config = require('./core/config')
+const { server } = require('./server')
+const { config, logger } = require('./core')
 const db = require('./db')
 const mongoose = db.mongoose
 
