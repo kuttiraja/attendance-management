@@ -1,15 +1,18 @@
 const express = require('express')
-const { logger, config } = require('./core')
 const app = express()
 const morgan = require('morgan')
 const fs = require('fs')
 const path = require('path')
+const responseHeaderTime = require('response-time')
+const bodyParser = require("body-parser")
+
 const {responseTime} = require('./middleware')
+const { logger, config } = require('./core')
 
 //Global Middleware
-const bodyParser = require("body-parser")
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+app.use(responseHeaderTime())
 app.use(responseTime)
 
 
