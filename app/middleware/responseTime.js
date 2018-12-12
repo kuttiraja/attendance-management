@@ -5,7 +5,7 @@ function responseTime(req, res, next) {
     res.on('finish', () => {
         const end = Date.now();
         const timeTaken = end - start
-        logger.info(`Path:[${req.baseUrl}]  timeTaken:[${timeTaken}]`)
+        logger.info(`Path:[${req.originalUrl}]  timeTaken:[${timeTaken}]`)
     })
     next()
 }
