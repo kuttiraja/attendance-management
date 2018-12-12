@@ -39,7 +39,21 @@ let result = [];
         res.status(409).send('Error in processing request')
 }
 
+async function getStudentById(req, res, next) {
+    let result = [];
+    try {
+        result = await student.getStudentById(req.params.studentId)
+        logger.info(`student.getStudentById()- returns [${result.length}] student details`)
+    } catch (err) {
+        logger.error(`student.getStudentById()- error ${err}`)
+    }
+
+    res.send(result)
+}
+
+
 module.exports = { 
     getAllStudent,
-    addStudent
+    addStudent,
+    getStudentById
 }

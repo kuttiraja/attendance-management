@@ -24,7 +24,20 @@ async function addStudent(studentData) {
     
 }
 
+async function getStudentById(studentId) {
+    let result = []
+    try {
+        result = await student.find({studentId})
+        logger.info(`student-queries.getStudentById()- returns [${result.length}] student details`)
+    } catch (err) {
+        logger.error(`student-queries.getStudentById()- error ${err}`)
+    }
+
+    return result
+}
+
 module.exports = {
     getAllStudents,
-    addStudent
+    addStudent,
+    getStudentById
 }
