@@ -1,4 +1,4 @@
-const { server } = require('./server')
+const { server }  = require('./server')
 const { config, logger } = require('./core')
 const db = require('./db')
 const mongoose = db.mongoose
@@ -10,8 +10,8 @@ db.connect()
   })
   .catch((error) =>
   {
-    logger.error("Error occured during DB connection")
-    logger.error(error)
+    logger.error("Error occured during APP PORT/DB connection")
+    logger.error(JSON.stringify(error))
   } )
 
 process.on('SIGTERM', () => {

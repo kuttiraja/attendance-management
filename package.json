@@ -4,7 +4,8 @@
   "description": "A small system to maintain class, students, staff, time.",
   "main": "app/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0",
+    "test": "npm run feature-test:local",
+    "feature-test:local": ".\\node_modules\\.bin\\cucumber-js  --format summary --fail-fast",
     "build": "npm run test",
     "start": "node app/index.js"
   },
@@ -27,5 +28,12 @@
     "q": "^1.5.1",
     "response-time": "^2.3.2",
     "winston": "^3.1.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
+    "cucumber": "^5.0.3",
+    "sinon": "^7.2.2",
+    "sinon-mongoose": "^2.2.1"
   }
 }

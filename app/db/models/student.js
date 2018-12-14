@@ -1,21 +1,26 @@
 const mongoose = require('mongoose')
+const Types = mongoose.Schema.Types
 const studentSchema = new mongoose.Schema({
-    studentId: String,
-    name: {firstName:String, middleName:String, lastName:String},
-    dob: Date,
-    email: String,
-    gender: String,
-    address: { 
-        addressline1: String, 
-        addressline2: String, 
-        city: String, 
-        zipCode: Number, 
-        State: String 
+    studentId: Types.Number,
+    name: {
+        firstName: Types.String,
+        middleName: Types.String,
+        lastName: Types.String
     },
-    parent: String,
-    lastUpdateTS: Date,
-    createTS: Date,
-    deletedTS: Date
+    dob: Types.Date,
+    email: Types.String,
+    gender: Types.String,
+    address: {
+        addressline1: Types.String,
+        addressline2: Types.String,
+        city: Types.String,
+        zipCode: Types.Number,
+        State: Types.String
+    },
+    parent: Types.String,
+    lastUpdateTS: Types.Date,
+    createTS: Types.Date,
+    deletedTS: Types.Date
 }, { collection: 'student' });
 
 const studentModel = mongoose.model('student', studentSchema)

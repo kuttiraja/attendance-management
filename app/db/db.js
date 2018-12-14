@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const { logger, config } = require('../core')
 mongoose.Promise = require('q').Promise
-
+// mongoose.set('debug', true)
 const mongooseOptions = {
     reconnectTries: 120,
     reconnectInterval: 1000,
