@@ -12,7 +12,7 @@ async function addStudent(studentData) {
     try {
         const nextStudentId = await counter.getNextSeqValue("studentId")
         studentData.studentId = nextStudentId
-        
+
         result = await student.create(studentData)
 
         logger.debug(`student-queries.addStudent() - success - ${result.studentId}`)
@@ -21,13 +21,13 @@ async function addStudent(studentData) {
     }
 
     return result
-    
+
 }
 
 async function getStudentById(studentId) {
     let result = []
     try {
-        result = await student.find({studentId})
+        result = await student.find({ studentId })
         logger.info(`student-queries.getStudentById()- returns [${result.length}] student details`)
     } catch (err) {
         logger.error(`student-queries.getStudentById()- error ${err}`)
