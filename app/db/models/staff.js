@@ -25,7 +25,7 @@ const staffSchema = new mongoose.Schema({
         addressLine2: Types.String,
         city: Types.String,
         zipCode: Types.Number,
-        State: Types.String
+        state: Types.String
     },
     lastUpdateTS: { type: Types.Date, default: Date.now() },
     createTS: { type: Types.Date, default: Date.now() },
