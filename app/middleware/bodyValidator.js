@@ -1,7 +1,8 @@
 const Joi = require('joi');
 const _ = require('lodash')
+const { logger } = require('../core')
 
-module.exports = (schema) => async function bodyValidator(req, res, next) {
+module.exports = (schema) => async function validate(req, res, next) {
 
     // Joi validation options
     const validationOptions = {
@@ -18,12 +19,12 @@ module.exports = (schema) => async function bodyValidator(req, res, next) {
             next();
         })
         .catch(error => {
-            
+
             const errorResponse = _.map(error.details, ({ message, type }) => ({
                 message: message.replace(/['"]/g, ''),
                 type
             }))
-            console.log(errorResponse)
+            logger.error(`bodyValidator.validate()- failed ${JSON.stringify(errorResponse)}`)
             res.status(422).json(errorResponse)
         })
 }

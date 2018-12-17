@@ -16,7 +16,7 @@ const StaffSchema = Joi.object({
         addressLine1: Joi.string().required(),
         addressLine2: Joi.string(),
         city: Joi.string().required(),
-        zipCode: Joi.number().max(999999),
+        zipCode: Joi.number().min(100).max(999999).required(),
         state: Joi.string().required()
     })
 })
