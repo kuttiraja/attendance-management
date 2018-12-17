@@ -25,7 +25,7 @@ routeDir.map(route => {
         app.use(`/${config.APP_NAME}/${route}`, router)
 })
 
-logger.info(`Logging enabled ${config.LOG_TO_FILE_OR_CONSOLE}`)
+logger.info(`server() - Logging enabled to [${config.LOG_TO_FILE_OR_CONSOLE}]`)
 app.use(morgan('combined', { stream: logger.stream }))
 
 module.exports = { 
