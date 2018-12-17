@@ -44,10 +44,11 @@ When('I request system to show all staffs', function (callback) {
     var expectedResults = availableStaffs
     staffModelMock
         .expects('find')
+        .chain('limit')
         .resolves(expectedResults)
 
     chai.request(server)
-        .get('/attendancemgmt/staff')
+        .get('/attendancemgmt/staff?page=1')
         .then(resolve => {
             this.setResponse(resolve)
             callback()
