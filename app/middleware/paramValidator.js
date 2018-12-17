@@ -11,11 +11,10 @@ module.exports = (schema) => async function validate(req, res, next) {
         stripUnknown: true // remove unknown keys from the validated data
     };
 
-
     return Joi
-        .validate(req.body, schema, validationOptions)
+        .validate(req.params, schema, validationOptions)
         .then(data => {
-            req.body = data
+            req.params = data
             next();
         })
         .catch(error => {
@@ -24,9 +23,9 @@ module.exports = (schema) => async function validate(req, res, next) {
                 message: message.replace(/['"]/g, ''),
                 type
             }))
-            logger.error(`bodyValidator.validate()- failed 
-                reason[${JSON.stringify(errorResponse)}] 
-                payload[${JSON.stringify(req.body)}]`)
+            logger.error(`paramValidator.validate()- failed 
+                reason[${JSON.stringify(errorResponse)}]
+                payload[${JSON.stringify(req.params)}]`)
             res.status(422).json(errorResponse)
         })
 }

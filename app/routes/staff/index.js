@@ -1,28 +1,11 @@
-const { getAllStaff, addStaff } = require('./staff')
+const { getStaffDetails, modifyStaff, getAllStaff, addStaff } = require('./staff')
 const router = require('express').Router()
-const { bodyValidator } = require('../../middleware')
+const { bodyValidator, paramValidator, queryValidator } = require('../../middleware')
+const { addStaffSchema, modifyStaffSchema, staffIDSchema, listStaffSchema } = require('./staff-schemas')
 
-const Joi = require('joi')
-const StaffSchema = Joi.object({
-    name: Joi.object({
-        firstName: Joi.string().required(),
-        lastName: Joi.string(),
-        middleName: Joi.string()
-    }),
-    dob: Joi.date(),
-    email: Joi.string().email(),
-    gender: Joi.string().length(1).required(),
-    address: Joi.object({
-        addressLine1: Joi.string().required(),
-        addressLine2: Joi.string(),
-        city: Joi.string().required(),
-        zipCode: Joi.number().min(100).max(999999).required(),
-        state: Joi.string().required()
-    })
-})
-
-router.get('/', getAllStaff)
-
-router.post('/', bodyValidator(StaffSchema), addStaff)
+router.get('/:staffId', paramValidator(staffIDSchema), getStaffDetails)
+router.put('/:staffId', paramValidator(staffIDSchema), bodyValidator(modifyStaffSchema), modifyStaff)
+router.get('/', queryValidator(listStaffSchema), getAllStaff)
+router.post('/', bodyValidator(addStaffSchema), addStaff)
 
 module.exports = router
