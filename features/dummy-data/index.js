@@ -6,12 +6,13 @@ const availableStaffs = [
             "lastName": "Raja"
         },
         "address": {
+            "addressLine1": "21 SW Ln",
             "city": "Bentonville",
             "zipCode": 72713
         },
         "lastUpdateTS": "2018-12-11T05:39:49.545Z",
-        "createTS": "2018-12-11T05:39:49.545Z",
-        "dob": "2019-12-12T06:00:00.000Z",
+        "createTS": "2018-12-11T01:39:49.545Z",
+        "dob": "2019-12-12T06:01:00.000Z",
         "email": "kutti@gmail.com",
         "gender": "M",
         "staffId": 2,
@@ -23,12 +24,13 @@ const availableStaffs = [
             "lastName": "Does"
         },
         "address": {
+            "addressLine1": "21 SW Ln",
             "city": "Bentonville",
             "zipCode": 72713
         },
         "lastUpdateTS": "2018-12-11T05:58:04.992Z",
         "createTS": "2018-12-11T05:58:04.992Z",
-        "dob": "2019-12-12T06:00:00.000Z",
+        "dob": "2019-12-12T02:00:00.000Z",
         "email": "john@gmail.com",
         "gender": "M",
         "staffId": 2
@@ -44,12 +46,14 @@ const newStaffDetails =
         "lastName": "Raja"
     },
     "address": {
+        "addressLine1": "21 SW Ln",
         "city": "Bentonville",
+        "state":"AR",
         "zipCode": 72713
     },
     "lastUpdateTS": "2018-12-11T05:39:49.545Z",
     "createTS": "2018-12-11T05:39:49.545Z",
-    "dob": "2019-12-12T06:00:00.000Z",
+    "dob": "2019-12-12T01:00:00.000Z",
     "email": "kutti@gmail.com",
     "gender": "M"
 };
@@ -62,6 +66,7 @@ const newStaffDB =
         "lastName": "Raja"
     },
     "address": {
+        "addressLine1": "21 SW Ln",
         "city": "Bentonville",
         "zipCode": 72713
     },
