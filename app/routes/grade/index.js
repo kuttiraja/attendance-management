@@ -1,15 +1,13 @@
-const { getAllGrade, getGradeById, addGrade } = require('./grade')
+const { getAllGrades, getGradeDetails, addGrade } = require('./grade')
 const router = require('express').Router()
 const { bodyValidator, paramValidator, queryValidator } = require('../../middleware')
 const { addGradeSchema, 
-        modifyGradeSchema, 
+        // modifyGradeSchema, 
         gradeIDSchema, 
         listGradeSchema } = require('./grade-schemas')
 
-router.get('/', queryValidator(listGradeSchema), getAllGrade)
-
-router.get('/:gradeId', paramValidator(gradeIDSchema),  getGradeById)
-
+router.get('/', queryValidator(listGradeSchema), getAllGrades)
+router.get('/:gradeId', paramValidator(gradeIDSchema),  getGradeDetails)
 router.post('/', bodyValidator(addGradeSchema), addGrade)
 
 module.exports = router

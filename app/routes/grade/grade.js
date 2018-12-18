@@ -1,10 +1,25 @@
 const grade = require('./grade-queries')
 const { logger, config } = require('../../core')
 
-async function getAllGrade(req, res, next) {
-    let result = [];
+async function getGradeDetails(req, res, next) {
+    const { gradeId } = req.params
+    logger.info(`grade.getGradeDetails()- start input[${gradeId}]`)
+    let result = {}
+
     try {
-        result = await grade.getAllGrades()
+        result = await grade.getGradeDetails(gradeId)
+        logger.info(`grade.getGradeDetails()- returns [${result.gradeId}] grade details`)
+    } catch (err) {
+        logger.error(`grade.getGradeDetails()- error [${err}]`)
+    }
+    res.status(200).json(result)
+}
+
+async function getAllGrades(req, res, next) {
+    let result = [];
+    const { page, index = 0 } = req.query
+    try {
+        result = await grade.getAllGrades(page, index)
         logger.info(`grade.getAllGrade()- returns [${result.length}] grade details`)
     } catch (err) {
         logger.error(`grade.getAllGrade()- error ${err}`)
@@ -12,7 +27,6 @@ async function getAllGrade(req, res, next) {
 
     res.send(result)
 }
-
 
 async function addGrade(req, res, next) {  
     let result = [];
@@ -35,21 +49,9 @@ async function addGrade(req, res, next) {
         res.status(409).send('Error in processing request')
 }
 
-async function getGradeById(req, res, next) {
-    let result = [];
-    try {
-        result = await grade.getGradeById(req.params.gradeId)
-        logger.info(`grade.getGradeById()- returns [${result.length}] grade details`)
-    } catch (err) {
-        logger.error(`grade.getGradeById()- error ${err}`)
-    }
-
-    res.send(result)
-}
-
 
 module.exports = { 
-    getAllGrade,
+    getAllGrades,
     addGrade,
-    getGradeById
+    getGradeDetails
 }

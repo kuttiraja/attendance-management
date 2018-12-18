@@ -2,8 +2,12 @@ const {grade, counter} = require('../../db/models')
 const { logger, config } = require('../../core')
 // const counter = require('../../db/models/counter')
 
-async function getAllGrades() {
-    return await grade.find({})
+async function getAllGrades(page, index) {
+    return await grade.find({}).limit(page)
+}
+
+async function getGradeDetails(id) {
+    return await grade.find({ gradeId: id })
 }
 
 async function addGrade(gradeData) {
@@ -24,20 +28,9 @@ async function addGrade(gradeData) {
 
 }
 
-async function getGradeById(gradeId) {
-    let result = []
-    try {
-        result = await grade.find({ gradeId:gradeId })
-        logger.info(`grade-queries.getGradeById()- returns [${result.length}] grade details`)
-    } catch (err) {
-        logger.error(`grade-queries.getGradeById()- error ${err}`)
-    }
-
-    return result
-}
 
 module.exports = {
     getAllGrades,
     addGrade,
-    getGradeById
+    getGradeDetails
 }
