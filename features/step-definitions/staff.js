@@ -1,4 +1,4 @@
-const {StaffModel , CounterModel} = require('../../app/db/models')
+const {staffModel , counterModel} = require('../../app/db/models')
 
 const sinon = require('sinon')
 require('sinon-mongoose')
@@ -10,16 +10,17 @@ const { server } = require('../../app/server')
 const world = require('../support/world');
 chai.use(chaiHttp);
 const { Given, When, Then } = require('cucumber');
-const { availableStaffs, newStaffDetails, newStaffDB } = require('../dummy-data');
+// const { availableStaffs, newStaffDetails, newStaffDB } = require('../dummy-data');
+const {staffData} = require('../dummy-data')
 let staffModelMock, counterModelMock;
 
 Given('staff details', function () {
-    staffModelMock = sinon.mock(StaffModel)
-    counterModelMock = sinon.mock(CounterModel)
+    staffModelMock = sinon.mock(staffModel)
+    counterModelMock = sinon.mock(counterModel)
 })
 
 When('I request system to add new staff', function (callback) {
-    var expectedResult = newStaffDB;
+    var expectedResult = staffData.newStaffDB;
     counterModelMock
         .expects('getNextSeqValue')
         .resolves(3)
@@ -30,7 +31,7 @@ When('I request system to add new staff', function (callback) {
     chai.request(server)
         .post('/attendancemgmt/staff/')
         .set('content-type', 'application/json')
-        .send(newStaffDetails)
+        .send(staffData.newStaffDetails)
         .then(resolve => {
             this.setResponse(resolve)
             callback()
@@ -41,14 +42,14 @@ When('I request system to add new staff', function (callback) {
 })
 
 When('I request system to show all staffs', function (callback) {
-    var expectedResults = availableStaffs
+    var expectedResults = staffData.availableStaffs
     staffModelMock
         .expects('find')
         .chain('limit')
         .resolves(expectedResults)
 
     chai.request(server)
-        .get('/attendancemgmt/staff?page=1')
+        .get('/attendancemgmt/staff?page_size=1')
         .then(resolve => {
             this.setResponse(resolve)
             callback()
@@ -61,7 +62,7 @@ When('I request system to show all staffs', function (callback) {
 Then('it should add new staff and return me staffId', function (done) {
     const response = this.getResponse()
     expect(response.statusCode).to.be.equal(201)
-    expect(response.body).deep.equal(newStaffDB)
+    expect(response.body).deep.equal(staffData.newStaffDB)
     done()
 })
 

@@ -15,7 +15,7 @@ async function getAllStaffs(page_size, page_num) {
     return await staffModel
         .find({})
         .skip(skips)
-        .limit(page)
+        .limit(page_size)
 }
 
 async function addStaff(staffData) {
