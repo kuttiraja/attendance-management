@@ -1,9 +1,9 @@
 const {grade, counter} = require('../../db/models')
 const { logger, config } = require('../../core')
-// const counter = require('../../db/models/counter')
 
-async function getAllGrades(page, index) {
-    return await grade.find({}).limit(page)
+async function getAllGrades(page_size, page_num) {
+    let skips = page_size * (page_num - 1)
+    return await grade.find({}).skip(skips).limit(page_size)
 }
 
 async function getGradeDetails(id) {

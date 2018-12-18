@@ -72,9 +72,9 @@ async function modifyStaff(req, res, next) {
 
 async function getAllStaff(req, res, next) {
     let result = [];
-    const { page, index = 0 } = req.query
+    const { page_size, page_num = 0 } = req.query
     try {
-        result = await staff.getAllStaffs(page)
+        result = await staff.getAllStaffs(page_size, page_num)
         logger.info(`staff.getAllStaff()- returns [${result.length}] staff details`)
     } catch (err) {
         logger.error(`staff.getAllStaff()- error [${err}]`)

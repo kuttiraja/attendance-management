@@ -10,9 +10,11 @@ async function modifyStaff(staffId, updateStaff) {
     return staff.findOneAndUpdate(staffId, updateStaff, { new: true })
 }
 
-async function getAllStaffs(page, index) {
+async function getAllStaffs(page_size, page_num) {
+    let skips = page_size * (page_num - 1)
     return await staff
         .find({})
+        .skip(skips)
         .limit(page)
 }
 

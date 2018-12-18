@@ -16,8 +16,8 @@ const gradeIDSchema = Joi.object({
 })
 
 const listGradeSchema = Joi.object({
-    page: Joi.number().min(1).required(),
-    limit: Joi.number().min(5)
+    page_size: Joi.number().min(1).required(),
+    page_num: Joi.number().min(5)
 })
 
 module.exports = {

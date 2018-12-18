@@ -3,10 +3,10 @@ const { logger, config } = require('../../core')
 
 async function getAllSubjects(req, res, next) {
     let result = [];
-    const { page, index = 0} = req.query
-    console.log("subject", page)
+    const { page_size, page_num = 1 } = req.query
+    
     try {
-        result = await subject.getAllSubjects(page, index)
+        result = await subject.getAllSubjects(page_size, page_num)
         logger.info(`subject.getAllSubject()- returns [${result.length}] subject details`)
     } catch (err) {
         logger.error(`subject.getAllSubject()- error ${err}`)

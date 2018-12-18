@@ -17,9 +17,9 @@ async function getGradeDetails(req, res, next) {
 
 async function getAllGrades(req, res, next) {
     let result = [];
-    const { page, index = 0 } = req.query
+    const { page_size, page_num = 1 } = req.query
     try {
-        result = await grade.getAllGrades(page, index)
+        result = await grade.getAllGrades(page_size, page_num)
         logger.info(`grade.getAllGrade()- returns [${result.length}] grade details`)
     } catch (err) {
         logger.error(`grade.getAllGrade()- error ${err}`)

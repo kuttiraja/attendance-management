@@ -1,9 +1,10 @@
 const {subject, counter} = require('../../db/models')
 const { logger, config } = require('../../core')
 
-async function getAllSubjects(page, index) {
-    console.log(page)
+async function getAllSubjects(page_size, page_num) {
+    let skips = page_num * (page_size - 1)
     return await subject.find({})
+                .skip(skips)
                 .limit(page)
 }
 
