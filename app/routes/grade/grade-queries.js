@@ -27,7 +27,7 @@ async function addGrade(gradeData) {
 async function getGradeById(gradeId) {
     let result = []
     try {
-        result = await grade.find({ gradeId })
+        result = await grade.find({ gradeId:gradeId })
         logger.info(`grade-queries.getGradeById()- returns [${result.length}] grade details`)
     } catch (err) {
         logger.error(`grade-queries.getGradeById()- error ${err}`)

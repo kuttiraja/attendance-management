@@ -3,6 +3,7 @@ const Types = mongoose.Schema.Types
 const mongoose = require('mongoose')
 const student = require('./student')
 const staff = require('./staff')
+const grade = require('./grade')
 
 const batchSchema = new mongoose.Schema({
     batchId: {
@@ -13,6 +14,7 @@ const batchSchema = new mongoose.Schema({
     students: Types.Array.student,
     staff: staff,
     academicYear: Types.String,
+    grade: grade,
     // class: class,
     // subjects: [subject],
     lastUpdateTS: { type: Types.Date, default: Date.now() },

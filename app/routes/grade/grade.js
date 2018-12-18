@@ -14,9 +14,8 @@ async function getAllGrade(req, res, next) {
 }
 
 
-async function addGrade(req, res, next) {
-    
-let result = [];
+async function addGrade(req, res, next) {  
+    let result = [];
     const { gradeName, maxStrength, gradeSection  } = req.body
     try {
         const newGrade = {

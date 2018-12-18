@@ -1,6 +1,6 @@
 use attendancemgmt;
 
-db.createCollection('class');
+db.createCollection('grade');
 db.createCollection('staff');
 db.createCollection('student');
 db.createCollection('attendance');
@@ -10,7 +10,7 @@ db.createCollection('period');
 db.createCollection("counters");
 
 //Creating counter variables for each collections.
-db.counters.insert({sequenceName:"classId", sequenceValue: NumberInt(0)});
+db.counters.insert({sequenceName:"gradeId", sequenceValue: NumberInt(0)});
 db.counters.insert({sequenceName:"studentId", sequenceValue:NumberInt(0)});
 db.counters.insert({sequenceName:"staffId", sequenceValue:NumberInt(0)});
 db.counters.insert({sequenceName:"attendanceId", sequenceValue:NumberInt(0)});
