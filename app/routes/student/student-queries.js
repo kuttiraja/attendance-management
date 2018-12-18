@@ -1,6 +1,5 @@
-const student = require('../../db/models/student')
+const {student , counter} = require('../../db/models')
 const { logger, config } = require('../../core')
-const counter = require('../../db/models/counter')
 
 async function getAllStudents() {
     return await student.find({})

@@ -1,5 +1,4 @@
-const staff = require('../../db/models/staff');
-const counter = require('../../db/models/counter');
+const {staff , counter} = require('../../db/models');
 const { logger, config } = require('../../core');
 
 async function getStaffDetails(id) {
