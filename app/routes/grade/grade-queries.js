@@ -1,6 +1,6 @@
-const grade = require('../../db/models/grade')
+const {grade, counter} = require('../../db/models')
 const { logger, config } = require('../../core')
-const counter = require('../../db/models/counter')
+// const counter = require('../../db/models/counter')
 
 async function getAllGrades() {
     return await grade.find({})

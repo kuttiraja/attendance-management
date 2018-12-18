@@ -4,13 +4,13 @@ const student = require('./student')
 const grade = require('./grade')
 // const subject = require('./subject')
 
-const batch = require('./batch')
+// const batch = require('./batch')
 
 module.exports = {
     counter,
     staff,
     student,
-    grade,
+    grade
     // subject,
-    batch
+    // batch
 }
