@@ -1,34 +1,30 @@
-const {staffModel , counterModel} = require('../../app/db/models')
+const {gradeModel , counterModel} = require('../../app/db/models')
 
 const sinon = require('sinon')
 require('sinon-mongoose')
-
 const chai = require('chai');
 const { expect } = chai;
-const chaiHttp = require('chai-http');
+const chaiHttp = require('chai-http')
 const { server } = require('../../app/server')
-const world = require('../support/world');
+const world = require('../support/world')
 chai.use(chaiHttp);
-const { Given, When, Then, Before, After} = require('cucumber');
-// const { availableStaffs, newStaffDetails, newStaffDB } = require('../dummy-data');
-const {staffData} = require('../dummy-data')
-let staffModelMock, counterModelMock;
+const { Given, When, Then, Before, After } = require('cucumber')
+const { gradeData } = require('../dummy-data')
+let gradeModelMock, counterModelMock;
 
 let  x
 
 Before(() => {
     x = sinon.createSandbox();
-    // x.reset()
     counterModelMock = x.mock(counterModel) 
     
-    staffModelMock = sinon.mock(staffModel)
-    // counterModelMock = sinon.mock(counterModel)
+    gradeModelMock = x.mock(gradeModel)
 
     counterModelMock
         .expects('getNextSeqValue')
         .resolves(3)
-    var expectedResult = staffData.newStaffDB;
-    staffModelMock
+    var expectedResult = gradeData.newGradeDB;
+    gradeModelMock
         .expects('create')
         .resolves(expectedResult);
 
@@ -38,16 +34,18 @@ After(() => {
     x.reset()
 })
 
-Given('staff details', function () {
-    // callback();
+Given('grade details', function () {
+    
 })
 
-When('I request system to add new staff', function (callback) {
-    
+When('I request system to add new grade', function (callback) {
+    var expectedResult = gradeData.newGradeDB;
+   
+
     chai.request(server)
-        .post('/attendancemgmt/staff/')
+        .post('/attendancemgmt/grade/')
         .set('content-type', 'application/json')
-        .send(staffData.newStaffDetails)
+        .send(gradeData.newGrade)
         .then(resolve => {
             this.setResponse(resolve)
             callback()
@@ -57,16 +55,16 @@ When('I request system to add new staff', function (callback) {
         })
 })
 
-When('I request system to show all staffs', function (callback) {
-    var expectedResults = staffData.availableStaffs
-    staffModelMock
+When('I request system to show all grades', function (callback) {
+    var expectedResults = gradeData.availableGrades
+    gradeModelMock
         .expects('find')
         .chain('skip')
         .chain('limit')
         .resolves(expectedResults)
 
     chai.request(server)
-        .get('/attendancemgmt/staff?page_size=1')
+        .get('/attendancemgmt/grade?page_size=1')
         .then(resolve => {
             this.setResponse(resolve)
             callback()
@@ -76,14 +74,14 @@ When('I request system to show all staffs', function (callback) {
         })
 })
 
-Then('it should add new staff and return me staffId', function (done) {
+Then('it should add new grade and return me gradeId', function (done) {
     const response = this.getResponse()
     expect(response.statusCode).to.be.equal(201)
-    expect(response.body).deep.equal(staffData.newStaffDB)
+    expect(response.body).deep.equal(gradeData.newGradeDB)
     done()
 })
 
-Then('it should retreive all staffs in the system', function (done) {
+Then('it should retreive all grades in the system', function (done) {
     const response = this.getResponse()
     expect(response.statusCode).to.be.equal(200)
     expect(response.body.length).to.be.greaterThan(0)

@@ -5,7 +5,7 @@
   "main": "app/index.js",
   "scripts": {
     "test": "npm run feature-test:local",
-    "feature-test:local": ".\\node_modules\\.bin\\cucumber-js  --format summary --fail-fast",
+    "feature-test:local": "./node_modules/.bin/cucumber-js  --format summary --fail-fast",
     "build": "npm run test",
     "start": "node app/index.js"
   },

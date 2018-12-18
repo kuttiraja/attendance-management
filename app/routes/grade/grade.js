@@ -37,14 +37,13 @@ async function addGrade(req, res, next) {
             gradeSection,
             maxStrength
         }
-
         result = await grade.addGrade(newGrade)
         logger.info(`grade.addGrade()- returns [${result.gradeId}] grade details`)
     } catch (err) {
         logger.error(`grade.addGrade()- error ${err}`)
     }
     if (result.gradeId)
-        res.status(201).send('Insert Success')
+        res.status(201).send(result)
     else
         res.status(409).send('Error in processing request')
 }
