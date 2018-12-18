@@ -1,5 +1,5 @@
-const StaffModel = require('../../app/db/models/staff')
-const CounterModel = require('../../app/db/models/counter')
+const {StaffModel , CounterModel} = require('../../app/db/models')
+
 const sinon = require('sinon')
 require('sinon-mongoose')
 

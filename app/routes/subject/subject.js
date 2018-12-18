@@ -1,4 +1,4 @@
-const subject = require('./subject-queries')
+const subjectQuery = require('./subject-queries')
 const { logger, config } = require('../../core')
 
 async function getAllSubjects(req, res, next) {
@@ -6,7 +6,7 @@ async function getAllSubjects(req, res, next) {
     const { page_size, page_num = 1 } = req.query
     
     try {
-        result = await subject.getAllSubjects(page_size, page_num)
+        result = await subjectQuery.getAllSubjects(page_size, page_num)
         logger.info(`subject.getAllSubject()- returns [${result.length}] subject details`)
     } catch (err) {
         logger.error(`subject.getAllSubject()- error ${err}`)
@@ -25,7 +25,7 @@ async function addSubject(req, res, next) {
             maxStrength
         }
 
-        result = await subject.addSubject(newSubject)
+        result = await subjectQuery.addSubject(newSubject)
         logger.info(`subject.addSubject()- returns [${result.subjectId}] subject details`)
     } catch (err) {
         logger.error(`subject.addSubject()- error ${err}`)
@@ -39,7 +39,7 @@ async function addSubject(req, res, next) {
 async function getSubjectById(req, res, next) {
     let result = [];
     try {
-        result = await subject.getSubjectById(req.params.subjectId)
+        result = await subjectQuery.getSubjectById(req.params.subjectId)
         logger.info(`subject.getSubjectById()- returns [${result.length}] subject details`)
     } catch (err) {
         logger.error(`subject.getSubjectById()- error ${err}`)

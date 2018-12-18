@@ -1,25 +1,25 @@
-const {subject, counter} = require('../../db/models')
+const {subjectModel, counterModel} = require('../../db/models')
 const { logger, config } = require('../../core')
 
 async function getAllSubjects(page_size, page_num) {
     let skips = page_num * (page_size - 1)
-    return await subject.find({})
+    return await subjectModel.find({})
                 .skip(skips)
                 .limit(page)
 }
 
 async function getSubjectDetails(id) {
-    return await subject.find({ subjectId: id })
+    return await subjectModel.find({ subjectId: id })
 }
 
 async function addSubject(subjectData) {
 
     let result = undefined;
     try {
-        const nextSubjectId = await counter.getNextSeqValue("subjectId")
+        const nextSubjectId = await counterModel.getNextSeqValue("subjectId")
         subjectData.subjectId = nextSubjectId
 
-        result = await subject.create(subjectData)
+        result = await subjectModel.create(subjectData)
 
         logger.debug(`subject-queries.addSubject() - success - ${result.subjectId}`)
     } catch (err) {
@@ -33,7 +33,7 @@ async function addSubject(subjectData) {
 async function getSubjectById(subjectId) {
     let result = []
     try {
-        result = await subject.find({ subjectId:subjectId })
+        result = await subjectModel.find({ subjectId:subjectId })
         logger.info(`subject-queries.getSubjectById()- returns [${result.length}] subject details`)
     } catch (err) {
         logger.error(`subject-queries.getSubjectById()- error ${err}`)

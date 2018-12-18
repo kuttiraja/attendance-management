@@ -1,4 +1,4 @@
-const staff = require('./staff-queries')
+const staffQuery = require('./staff-queries')
 const { logger, config } = require('../../core')
 
 async function getStaffDetails(req, res, next) {
@@ -7,7 +7,7 @@ async function getStaffDetails(req, res, next) {
     let result = {}
 
     try {
-        result = await staff.getStaffDetails(staffId)
+        result = await staffQuery.getStaffDetails(staffId)
         logger.info(`staff.getStaffDetails()- returns [${result.staffId}] staff details`)
     } catch (err) {
         logger.error(`staff.getStaffDetails()- error [${err}]`)
@@ -31,7 +31,7 @@ async function modifyStaff(req, res, next) {
     const updateStaff = { name, dob, email, gender, address }
 
     try {
-        const staffDetailsDB = await staff.getStaffDetails(staffId)
+        const staffDetailsDB = await staffQuery.getStaffDetails(staffId)
         let isStaffBodySame = null
         if (staffDetailsDB) {
             isStaffBodySame = (staffDetailsDB[0].staffId === updateStaffId) ? true : false
@@ -47,7 +47,7 @@ async function modifyStaff(req, res, next) {
         }
 
         if (isStaffBodySame) {
-            const updatedResult = await staff.modifyStaff({ staffId }, updateStaff)
+            const updatedResult = await staffQuery.modifyStaff({ staffId }, updateStaff)
             result = {
                 status: "SUCCESS",
                 message: "",
@@ -74,7 +74,7 @@ async function getAllStaff(req, res, next) {
     let result = [];
     const { page_size, page_num = 0 } = req.query
     try {
-        result = await staff.getAllStaffs(page_size, page_num)
+        result = await staffQuery.getAllStaffs(page_size, page_num)
         logger.info(`staff.getAllStaff()- returns [${result.length}] staff details`)
     } catch (err) {
         logger.error(`staff.getAllStaff()- error [${err}]`)
@@ -97,7 +97,7 @@ async function addStaff(req, res, next) {
             address
         }
 
-        result = await staff.addStaff(newStaff)
+        result = await staffQuery.addStaff(newStaff)
         logger.info(`staff.addStaff()- returns [${result.staffId}] staff details`)
     } catch (err) {
         logger.error(`staff.addStaff()- error [${err}]`)

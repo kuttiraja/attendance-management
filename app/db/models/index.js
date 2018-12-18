@@ -1,16 +1,16 @@
-const counter = require('./counter')
-const staff = require('./staff')
-const student = require('./student')
-const grade = require('./grade')
-const subject = require('./subject')
+const counterModel = require('./counter')
+const staffModel = require('./staff')
+const studentModel = require('./student')
+const gradeModel = require('./grade')
+const subjectModel = require('./subject')
 
 // const batch = require('./batch')
 
 module.exports = {
-    counter,
-    staff,
-    student,
-    grade,
-    subject
+    counterModel,
+    staffModel,
+    studentModel,
+    gradeModel,
+    subjectModel
     // batch
 }
