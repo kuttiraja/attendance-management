@@ -5,7 +5,7 @@
   "main": "app/index.js",
   "scripts": {
     "test": "npm run feature-test:local",
-    "feature-test:local": ".\\node_modules\\.bin\\cucumber-js  --format summary --fail-fast",
+    "feature-test:local": ".\\node_modules\\.bin\\cucumber-js  --format node_modules/cucumber-pretty --fail-fast",
     "build": "npm run test",
     "start": "node app/index.js"
   },
@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/kuttiraja/attendance-management#readme",
   "dependencies": {
+    "cucumber-pretty": "^1.5.0",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "joi": "^14.3.0",
