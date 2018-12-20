@@ -1,28 +1,29 @@
-const staff = require('../../db/models/staff');
-const counter = require('../../db/models/counter');
+const {staffModel , counterModel} = require('../../db/models');
 const { logger, config } = require('../../core');
 
 async function getStaffDetails(id) {
-    return await staff.find({ staffId: id })
+    return await staffModel.find({ staffId: id })
 }
 
 async function modifyStaff(staffId, updateStaff) {
     // last parameter new true is for returning the updated document
-    return staff.findOneAndUpdate(staffId, updateStaff, { new: true })
+    return staffModel.findOneAndUpdate(staffId, updateStaff, { new: true })
 }
 
-async function getAllStaffs(page, index) {
-    return await staff
+async function getAllStaffs(page_size, page_num) {
+    let skips = page_size * (page_num - 1)
+    return await staffModel
         .find({})
-        .limit(page)
+        .skip(skips)
+        .limit(page_size)
 }
 
 async function addStaff(staffData) {
     let result = undefined;
     try {
-        const nextStaffId = await counter.getNextSeqValue("staffId")
+        const nextStaffId = await counterModel.getNextSeqValue("staffId")
         staffData.staffId = nextStaffId;
-        result = await staff.create(staffData)
+        result = await staffModel.create(staffData)
 
         logger.debug(`staff-queries.addStaff() - success - ${result.staffId}`)
     } catch (err) {

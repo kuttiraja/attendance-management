@@ -41,8 +41,8 @@ const staffIDSchema = Joi.object({
 })
 
 const listStaffSchema = Joi.object({
-    page: Joi.number().min(1).required(),
-    limit: Joi.number().min(5)
+    page_size: Joi.number().min(1).required(),
+    page_num: Joi.number().min(5)
 })
 
 module.exports = {
