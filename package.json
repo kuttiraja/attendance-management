@@ -4,7 +4,7 @@
   "description": "A small system to maintain class, students, staff, time.",
   "main": "app/index.js",
   "scripts": {
-    "test": "npm run feature-test:local",
+    "test": "npm run mocha-test",
     "feature-test:local": ".\\node_modules\\.bin\\cucumber-js  --format node_modules/cucumber-pretty --fail-fast",
     "build": "npm run test",
     "start": "node app/index.js",
