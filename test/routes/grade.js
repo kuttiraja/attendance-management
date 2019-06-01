@@ -49,7 +49,7 @@ after(() => {
 })
 
 describe('grade Testing', () => {
-    it('Get a grade details', (done) => {
+    it('Get one grade details', (done) => {
         req
         .get('/attendancemgmt/grade/1')
         .end((req, res) => {
@@ -70,7 +70,7 @@ describe('grade Testing', () => {
         })
     })
 
-    it('Add a grade', (done) => {   
+    it('Add one grade', (done) => {   
         req
         .post('/attendancemgmt/grade')
         .send(gradeData.newGrade)
