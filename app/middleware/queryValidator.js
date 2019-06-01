@@ -23,7 +23,7 @@ module.exports = (schema) => async function validate(req, res, next) {
                 message: message.replace(/['"]/g, ''),
                 type
             }))
-            logger.error(`paramValidator.validate()- failed 
+            logger.error(`queryValidator.validate()- failed 
                 reason[${JSON.stringify(errorResponse)}]
                 payload[${JSON.stringify(req.query)}]`)
             res.status(422).json(errorResponse)
