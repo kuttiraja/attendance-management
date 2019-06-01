@@ -4,10 +4,11 @@
   "description": "A small system to maintain class, students, staff, time.",
   "main": "app/index.js",
   "scripts": {
-    "test": "npm run feature-test:local",
+    "test": "npm run mocha-test",
     "feature-test:local": ".\\node_modules\\.bin\\cucumber-js  --format node_modules/cucumber-pretty --fail-fast",
     "build": "npm run test",
-    "start": "node app/index.js"
+    "start": "node app/index.js",
+    "mocha-test": "mocha --timeout 10000 test\\**\\*.js"
   },
   "repository": {
     "type": "git",
@@ -26,16 +27,20 @@
     "express": "^4.16.4",
     "joi": "^14.3.0",
     "lodash": "^4.17.11",
-    "mongoose": "^5.4.0",
+    "mongoose": "^5.4.1",
     "morgan": "^1.9.1",
     "q": "^1.5.1",
     "response-time": "^2.3.2",
+    "supertest": "^3.3.0",
     "winston": "^3.1.0"
   },
   "devDependencies": {
+    "assert": "^1.4.1",
     "chai": "^4.2.0",
     "chai-http": "^4.2.0",
     "cucumber": "^5.0.3",
+    "mocha": "^5.2.0",
+    "should": "^13.2.3",
     "sinon": "^7.2.2",
     "sinon-mongoose": "^2.2.1"
   }
