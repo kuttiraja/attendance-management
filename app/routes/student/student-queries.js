@@ -1,4 +1,4 @@
-const {studentModel , counterModel} = require('../../db/models')
+const { studentModel, counterModel } = require('../../db/models')
 const { logger, config } = require('../../core')
 
 async function getAllStudents() {
@@ -35,8 +35,21 @@ async function getStudentById(studentId) {
     return result
 }
 
+async function updateStudentById(studentId, updStudent) {
+    let result = null
+    try {
+        result = await studentModel.findOneAndUpdate(studentId, updStudent, { new: true })
+        logger.info(`student-queries.updateStudentById() - success[${JSON.stringify(result)}]`)
+    } catch (err) {
+        logger.error(`student-queries.updateStudentById() - error[${JSON.stringify(result)}]`)
+        logger.error(err)
+    }
+    return result
+}
+
 module.exports = {
     getAllStudents,
     addStudent,
-    getStudentById
+    getStudentById,
+    updateStudentById
 }

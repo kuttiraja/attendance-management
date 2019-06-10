@@ -8,11 +8,11 @@ const studentSchema = new mongoose.Schema({
         lastName: Types.String
     },
     dob: Types.Date,
-    email: Types.String,
+    emailID: Types.String,
     gender: Types.String,
     address: {
-        addressline1: Types.String,
-        addressline2: Types.String,
+        addressLine1: Types.String,
+        addressLine2: Types.String,
         city: Types.String,
         zipCode: Types.Number,
         State: Types.String
