@@ -85,7 +85,7 @@ async function updateStudentById(req, res, next) {
                 lastUpdatedTS: Date.now()
             }
 
-            logger.info(`student.updateStudentById() - updating student[${studentId}] with [${updStudent}]`)
+            logger.info(`student.updateStudentById() - updating student[${studentId}] with [${JSON.stringify(updStudent)}]`)
             const updResult = await student.updateStudentById(studentId, updStudent)
             logger.info(`student.updateStudentById() - update sucessfull for student[${studentId}] with [${JSON.stringify(updStudent)}]`)
             response.data.push(updResult)
