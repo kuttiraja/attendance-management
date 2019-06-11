@@ -2,7 +2,7 @@ const { studentModel, counterModel } = require('../../db/models')
 const { logger, config } = require('../../core')
 
 async function getAllStudents() {
-    return await studentModel.find({})
+    return await studentModel.find({ deletedTS: { $exists: false } })
 }
 
 async function addStudent(studentData) {
@@ -37,8 +37,9 @@ async function getStudentById(studentId) {
 
 async function updateStudentById(studentId, updStudent) {
     let result = null
+    console.log(updStudent)
     try {
-        result = await studentModel.findOneAndUpdate(studentId, updStudent, { new: true })
+        result = await studentModel.findOneAndUpdate({ studentId: studentId }, updStudent, { new: true })
         logger.info(`student-queries.updateStudentById() - success[${JSON.stringify(result)}]`)
     } catch (err) {
         logger.error(`student-queries.updateStudentById() - error[${JSON.stringify(result)}]`)

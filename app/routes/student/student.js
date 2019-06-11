@@ -25,7 +25,9 @@ async function addStudent(req, res, next) {
             emailID,
             gender,
             address,
-            parent
+            parent,
+            lastUpdatedTS: Date.now(),
+            createdTS: Date.now()
         }
 
         result = await student.addStudent(newStudent)
@@ -79,7 +81,8 @@ async function updateStudentById(req, res, next) {
                 emailID,
                 gender,
                 address,
-                parent
+                parent,
+                lastUpdatedTS: Date.now()
             }
 
             logger.info(`student.updateStudentById() - updating student[${studentId}] with [${updStudent}]`)
@@ -124,18 +127,13 @@ async function removeStudentById(req, res, next) {
 
             const { name, dob, emailID, gender, address, parent } = req.body
             const updStudent = {
-                name,
-                dob,
-                emailID,
-                gender,
-                address,
-                parent,
-                deleted: true
+                deletedTS: Date.now(),
+                lastUpdatedTS: Date.now()
             }
 
-            logger.info(`student.removeStudentById() - updating student[${studentId}] with [${updStudent}]`)
+            logger.info(`student.removeStudentById() - updating student[${studentId}] with [${JSON.stringify(updStudent)}]`)
             const updResult = await student.updateStudentById(studentId, updStudent)
-            logger.info(`student.removeStudentById() - update sucessfull for student[${studentId}] with [${JSON.stringify(updStudent)}]`)
+            logger.info(`student.removeStudentById() - update sucessfull for student[${studentId}]`)
             response.data.push(updResult)
         }
 

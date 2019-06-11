@@ -18,8 +18,8 @@ const studentSchema = new mongoose.Schema({
         State: Types.String
     },
     parent: Types.String,
-    lastUpdateTS: Types.Date,
-    createTS: Types.Date,
+    lastUpdatedTS: Types.Date,
+    createdTS: Types.Date,
     deletedTS: Types.Date
 }, { collection: 'student' });
 

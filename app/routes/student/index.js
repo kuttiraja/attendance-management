@@ -1,16 +1,16 @@
 const { getAllStudent, getStudentById, addStudent, updateStudentById, removeStudentById } = require('./student')
 const router = require('express').Router()
-const { studentIDSchema, modifyStudentSchema } = require('./student-schema')
+const { addStudentSchema, studentIDSchema, modifyStudentSchema, listStudentSchema } = require('./student-schema')
 const { bodyValidator, paramValidator, queryValidator } = require('../../middleware')
 
-router.get('/', getAllStudent)
+router.get('/', queryValidator(listStudentSchema), getAllStudent)
 
 router.get('/:studentId', paramValidator(studentIDSchema), getStudentById)
 
-router.post('/', addStudent)
+router.post('/', bodyValidator(addStudentSchema), addStudent)
 
 router.put('/:studentId', paramValidator(studentIDSchema), bodyValidator(modifyStudentSchema), updateStudentById)
 
-router.put('/:studentId', paramValidator(studentIDSchema), bodyValidator(modifyStudentSchema), removeStudentById)
+router.delete('/:studentId', paramValidator(studentIDSchema), bodyValidator(modifyStudentSchema), removeStudentById)
 
 module.exports = router
