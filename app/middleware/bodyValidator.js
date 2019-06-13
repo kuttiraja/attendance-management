@@ -11,7 +11,7 @@ module.exports = (schema) => async function validate(req, res, next) {
         stripUnknown: true // remove unknown keys from the validated data
     };
 
-    console.log(req.body)
+    
     return Joi
         .validate(req.body, schema, validationOptions)
         .then(data => {
@@ -19,7 +19,6 @@ module.exports = (schema) => async function validate(req, res, next) {
             next();
         })
         .catch(error => {
-
             const errorResponse = _.map(error.details, ({ message, type }) => ({
                 message: message.replace(/['"]/g, ''),
                 type

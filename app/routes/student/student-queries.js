@@ -2,7 +2,8 @@ const { studentModel, counterModel } = require('../../db/models')
 const { logger, config } = require('../../core')
 
 async function getAllStudents() {
-    return await studentModel.find({ deletedTS: { $exists: false } })
+    // return await studentModel.find({ deletedTS: { $exists: false } })
+    return await studentModel.find({})
 }
 
 async function addStudent(studentData) {
