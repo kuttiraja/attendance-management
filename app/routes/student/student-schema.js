@@ -3,15 +3,15 @@ const Joi = require('joi')
 const addStudentSchema = Joi.object({
     name: Joi.object({
         firstName: Joi.string().required(),
-        lastName: Joi.string(),
-        middleName: Joi.string()
-    }).required(),
+        lastName: Joi.string().allow('', null),
+        middleName: Joi.string().allow('', null)
+    }),
     dob: Joi.date(),
-    emailID: Joi.string().email(),
+    emailID: Joi.string().email().allow('', null),
     gender: Joi.string().length(1).required(),
     address: Joi.object({
         addressLine1: Joi.string().required(),
-        addressLine2: Joi.string(),
+        addressLine2: Joi.string().allow('').optional(),
         city: Joi.string().required(),
         zipCode: Joi.number().min(100).max(999999).required(),
         state: Joi.string().required()
@@ -26,15 +26,15 @@ const modifyStudentSchema = Joi.object({
     studentId: Joi.number().min(1).required(),
     name: Joi.object({
         firstName: Joi.string().required(),
-        lastName: Joi.string(),
-        middleName: Joi.string()
+        lastName: Joi.string().allow(''),
+        middleName: Joi.string().allow('')
     }).required(),
     dob: Joi.date(),
-    emailID: Joi.string().email(),
+    emailID: Joi.string().email().allow(''),
     gender: Joi.string().length(1).required(),
     address: Joi.object({
         addressLine1: Joi.string().required(),
-        addressLine2: Joi.string(),
+        addressLine2: Joi.string().allow(''),
         city: Joi.string().required(),
         zipCode: Joi.number().min(100).max(999999).required(),
         state: Joi.string().required()
