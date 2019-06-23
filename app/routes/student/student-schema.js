@@ -6,7 +6,7 @@ const addStudentSchema = Joi.object({
         lastName: Joi.string().allow('', null),
         middleName: Joi.string().allow('', null)
     }),
-    dob: Joi.date(),
+    dob: Joi.date().allow('', null),
     emailID: Joi.string().email().allow('', null),
     gender: Joi.string().length(1).required(),
     address: Joi.object({
@@ -29,7 +29,7 @@ const modifyStudentSchema = Joi.object({
         lastName: Joi.string().allow(''),
         middleName: Joi.string().allow('')
     }).required(),
-    dob: Joi.date(),
+    dob: Joi.date().allow('',null),
     emailID: Joi.string().email().allow(''),
     gender: Joi.string().length(1).required(),
     address: Joi.object({
