@@ -29,7 +29,7 @@
     "express": "^4.16.4",
     "joi": "^14.3.0",
     "lodash": "^4.17.11",
-    "mongoose": "^5.4.1",
+    "mongoose": "^5.7.5",
     "morgan": "^1.9.1",
     "npm-run-posix-or-windows": "^2.0.2",
     "q": "^1.5.1",
